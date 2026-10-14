@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,14 +77,10 @@ WSGI_APPLICATION = 'minicore.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mini_core_db',
-        'USER': 'mini_core_db_user',
-        'PASSWORD': 'hjdnxemE8d8Cqj2ufAkRAfH57euGMtUo',
-        'HOST': 'dpg-d1e3vnp5pdvs73f66g70-a.oregon-postgres.render.com',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='postgres://mini_core_db_user:hjdnxemE8d8Cqj2ufAkRAfH57euGMtUo@dpg-d1e3vnp5pdvs73f66g70-a.oregon-postgres.render.com/mini_core_db',
+        conn_max_age=600
+    )
 }
 
 
