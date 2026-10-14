@@ -77,10 +77,17 @@ WSGI_APPLICATION = 'minicore.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://mini_core_db_user:hjdnxemE8d8Cqj2ufAkRAfH57euGMtUo@dpg-d1e3vnp5pdvs73f66g70-a.oregon-postgres.render.com/mini_core_db',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'PEGA_AQUÍ_EL_DATABASE',       # Seguramente es: basededatos_tarea
+        'USER': 'PEGA_AQUÍ_EL_USERNAME',       # Seguramente es: basededatos_tarea_user
+        'PASSWORD': 'PEGA_AQUÍ_EL_PASSWORD',   # (Cópialo de los puntitos ocultos)
+        'HOST': 'PEGA_AQUÍ_EL_HOSTNAME',       # Va a empezar con: dpg-db7ckmbbc2fs73emnrdg-a...
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        }
+    }
 }
 
 
