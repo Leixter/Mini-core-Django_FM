@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from .models import Venta, Regla
+from .models import Venta, Regla, Vendedor  # <-- ¡Agregamos Vendedor aquí!
 from decimal import Decimal
 from collections import defaultdict
+from django.http import HttpResponse
+from datetime import date
 
 def filtrar_ventas(request):
     resultados = []
@@ -47,3 +49,19 @@ def filtrar_ventas(request):
         'fecha_inicio': fecha_inicio,
         'fecha_fin': fecha_fin
     })
+
+def inyectar_datos(request):
+    r12, _ = Regla.objects.get_or_create(porcentaje=12.0, monto_minimo=1000.00)
+    r8, _ = Regla.objects.get_or_create(porcentaje=8.0, monto_minimo=0.00)
+
+    v1, _ = Vendedor.objects.get_or_create(nombre='Perico P')
+    v2, _ = Vendedor.objects.get_or_create(nombre='Zoila Baca')
+    v3, _ = Vendedor.objects.get_or_create(nombre='Aquiles C')
+
+    f_venta = date(2025, 5, 15)
+
+    Venta.objects.get_or_create(Vendedor=v1, regla=r12, fecha_venta=f_venta, monto=1200.00)
+    Venta.objects.get_or_create(Vendedor=v2, regla=r8, fecha_venta=f_venta, monto=800.00)
+    Venta.objects.get_or_create(Vendedor=v3, regla=r8, fecha_venta=f_venta, monto=900.00)
+
+    return HttpResponse("¡Magia hecha! Datos insertados correctamente en Render.")
