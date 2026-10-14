@@ -73,16 +73,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'minicore.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'PEGA_AQUÍ_EL_DATABASE',       # Seguramente es: basededatos_tarea
-        'USER': 'PEGA_AQUÍ_EL_USERNAME',       # Seguramente es: basededatos_tarea_user
-        'PASSWORD': 'PEGA_AQUÍ_EL_PASSWORD',   # (Cópialo de los puntitos ocultos)
-        'HOST': 'PEGA_AQUÍ_EL_HOSTNAME',       # Va a empezar con: dpg-db7ckmbbc2fs73emnrdg-a...
+        'NAME': 'basededatos_tarea',                 
+        'USER': 'basededatos_tarea_user',           
+        'PASSWORD': 'r0jtFohIJP6uggkEcZbRWPapgibeROfP',    
+        'HOST': 'dpg-db7ckmbbc2fs73emnrdg-a.ohio-postgres.render.com', 
         'PORT': '5432',
         'OPTIONS': {
             'sslmode': 'require',
